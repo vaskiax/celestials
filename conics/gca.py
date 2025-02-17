@@ -67,9 +67,7 @@ class GCA():
         x = r\cos{(f-M)} - a \\
         y = r\sin{(f-M)}
         $$
-
-        
-        """
+    """
 
 
         proof_text_4 = r"""Teniendo en cuenta la expasion del argumento de la funciones sinusoidales de cada coordenada, mostrado en la ecuacion 2.88 de MD, y el hecho de que por definicion de (e) cualquiera de sus potencias mayores a 1 tiende a cero, las expresiones para x e y se convierten a:
@@ -78,7 +76,6 @@ class GCA():
         x \approx r\cos{(2e\sin{M})} - a \\
         y \approx r\sin{(2e\sin{M})}
         $$
-
         """
 
         proof_text_5 = r"""Estas expresiones pueden ser simplificadas realizando una nueva expansion en series de cosenos y senos para los terminos sinusoidales:
@@ -86,7 +83,6 @@ class GCA():
         \cos{(2e\sin{M})} = 1 - 2e^{2}\sin{M}^2
         \sin{(2e\sin{M})} = 2e\sin{M}
         $$
-
         """
         
         
@@ -121,7 +117,6 @@ class GCA():
         x \approx a(1- e\cos{M})(1-2e^{2}\sin{M}^2) - a \approx - ae\cos{M} \\
         y \approx a(1- e\cos{M})2e\sin{M} \approx 2ae\sin{M}
         $$
-
         """
 
         proof_text_11 = r"""Finalmente, reemplazando en la ecuacion estandar de la elipse, se tiene que:
