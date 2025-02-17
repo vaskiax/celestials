@@ -50,7 +50,7 @@ class GCA():
         """
         Proof of the GCA
         """
-        from IPython.display import display, Latex
+        from IPython.display import display, HTML
 
         proof_text = r"""Dado el caso de un problema de dos cuerpos gravitacional, si uno de estos orbita al otro siguiendo una trayectoria aproximadamente circular $(e << 1)$, se puede estudiar su movimiento descomponiendolo en una parte circular y otra eliptica descritas por dos puntos especiales.
         Un punto G en movimiento circular uniforme a una distancia (a) del centro, que corresponde con el semiejer mayor del cuerpo en su orbita, y una frecuencia angular media n resultado de la tercera ley de Kepler:
@@ -102,7 +102,7 @@ class GCA():
         Cumpliendo con la identidad trigonometrica, se demuestra que el movimiento de un cuerpo en una orbita eliptica puede ser descompuesto en dos movimientos circulares, uno en el centro de la orbita y otro en la orbita misma.
         """
 
-        display(Latex(proof_text))
+        display(HTML(proof_text))
     
     def __params__(self):
         return self.orb_params.__dict__
