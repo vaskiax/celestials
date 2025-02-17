@@ -57,8 +57,7 @@ class GCA():
         proof_text_2 = r"""Un punto G en movimiento circular uniforme a una distancia (a) del centro, que corresponde con el semiejer mayor del cuerpo en su orbita, y una frecuencia angular media n resultado de la tercera ley de Kepler:
         $$
         n = \sqrt{\frac{\mu}{a^3}}
-        $$
-        """
+        $$"""
         
         
         proof_text_3 = r"""Ademas, se tiene un punto P orbitandolo con una trayectoria eliptica caracterizada por un semieje mayor y menor de longitud $2ae$ y $ae$ respectivamente, con (e) la excentricidad de la elipse. Este tambien orbita al punto G a la misma frecuencia angular media del mismo. 
@@ -66,8 +65,7 @@ class GCA():
         $$
         x = r\cos{(f-M)} - a \\
         y = r\sin{(f-M)}
-        $$
-    """
+        $$"""
 
 
         proof_text_4 = r"""Teniendo en cuenta la expasion del argumento de la funciones sinusoidales de cada coordenada, mostrado en la ecuacion 2.88 de MD, y el hecho de que por definicion de (e) cualquiera de sus potencias mayores a 1 tiende a cero, las expresiones para x e y se convierten a:
@@ -75,56 +73,48 @@ class GCA():
         f - M \approx 2e\sin{M} \\
         x \approx r\cos{(2e\sin{M})} - a \\
         y \approx r\sin{(2e\sin{M})}
-        $$
-        """
+        $$"""
 
         proof_text_5 = r"""Estas expresiones pueden ser simplificadas realizando una nueva expansion en series de cosenos y senos para los terminos sinusoidales:
         $$
         \cos{(2e\sin{M})} = 1 - 2e^{2}\sin{M}^2
         \sin{(2e\sin{M})} = 2e\sin{M}
-        $$
-        """
+        $$"""
         
         
         proof_text_6 = r"""Ademas, de la ecuacion 2.20 se tiene que: $r = \frac{a(1-e^2)}{1 + e\cos{f}}$ el cual al expandir su denominador en torno a (e). Nuevamnete, siendo este un valor pequeño, se obtiene la expresion $(1-e\cos{f})$ en el denominador, mientras que en el numerador la potencia cuadratica desaparece por la misma razon, finalizando con la expresion:
         $$
         r = \frac{a(1-e^2)}{1 + e\cos{f}} \approx a(1-e^2)\cdot(1-e\cos{f}) \approx a(1-e\cos{f})
-        $$
-        """
+        $$"""
 
         proof_text_7 = r"""Y usando nuevamente el resultado de la ecuacion 2.88: $ f - M \approx 2e\sin{M}$ , se obtiene entonces que:
         $$
         \cos{f} \approx \cos{M + 2e\sin{M}}
-        $$       
-        """
+        $$"""
 
 
         proof_text_8 = r"""Donde, dada la magnitud de e, el lado derecho adquiere la forma $\cos{M + \delta} \approx \cos{M} - \delta\sin{M}$, por lo cual:
         $$
         \cos{f} \approx \cos{M} - \delta\sin{M} = \cos{M} - 2e\sin{M}\sin{M} = \cos{M} - 2e\sin{M}^2
-        $$
-        """
+        $$"""
 
         proof_text_9 = r"""Teniendo el ultimo termino muy pequeño por el cuadrado del seno a la par de la multiplicacion por la excentricidad, la expresion final indica que, arpoximadamente, los cosenos de ambas anomalias es el mismo.
         $$
         \cos{f} \approx \cos{M}
-        $$
-        """
+        $$"""
         
         
         proof_text_10 = r"""Asi, reemplazando en las expresiones aproximadas de x e y, se obtiene:  
         $$
         x \approx a(1- e\cos{M})(1-2e^{2}\sin{M}^2) - a \approx - ae\cos{M} \\
         y \approx a(1- e\cos{M})2e\sin{M} \approx 2ae\sin{M}
-        $$
-        """
+        $$"""
 
         proof_text_11 = r"""Finalmente, reemplazando en la ecuacion estandar de la elipse, se tiene que:
         $$
         (\frac{- ae\cos{M}}{ae})^2  + (\frac{2ae\sin{M}}{2ae})^2 = \cos{M}^2 + \sin{M}^2 = 1    
         $$
-        Cumpliendo con la identidad trigonometrica, se demuestra que el movimiento de un cuerpo en una orbita eliptica puede ser descompuesto en dos movimientos circulares, uno en el centro de la orbita y otro en la orbita misma.
-        """
+        Cumpliendo con la identidad trigonometrica, se demuestra que el movimiento de un cuerpo en una orbita eliptica puede ser descompuesto en dos movimientos circulares, uno en el centro de la orbita y otro en la orbita misma."""
 
         display(Markdown(proof_text_1))
         display(Markdown(proof_text_2))
