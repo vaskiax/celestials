@@ -31,20 +31,34 @@ class GCA():
     Methods:
     """
     from conics.orbitals import Orbitals
+    def __init__(self, orb_params=None):
+        if orb_params is None:
+            self.orb_params = self.Orbitals()
+            self.a = 0
+            self.b = 0
+            self.e = 0
+            self.c = 0
+            self.p = 0
+            self.q = 0
+            self.n = 0
+            self.f = 0
+            self.E = 0
+            self.M = 0
+            self.T = 0
 
-    def __init__(self, orb_params: Orbitals):
-        self.orb_params = orb_params
-        self.a = orb_params.semimajor
-        self.b = orb_params.semiminor
-        self.e = orb_params.eccentricity
-        self.c = orb_params.focus
-        self.p = orb_params.latus_rectum
-        self.q = orb_params.directrix
-        self.n = orb_params.mean_angular_velocity
-        self.f = orb_params.true_anomaly
-        self.E = orb_params.eccentric_anomaly
-        self.M = orb_params.mean_anomaly
-        self.T = orb_params.time_period
+        else:
+            self.orb_params = orb_params
+            self.a = orb_params.semimajor
+            self.b = orb_params.semiminor
+            self.e = orb_params.eccentricity
+            self.c = orb_params.focus
+            self.p = orb_params.latus_rectum
+            self.q = orb_params.directrix
+            self.n = orb_params.mean_angular_velocity
+            self.f = orb_params.true_anomaly
+            self.E = orb_params.eccentric_anomaly
+            self.M = orb_params.mean_anomaly
+            self.T = orb_params.time_period
 
     def proof(self):
         """
