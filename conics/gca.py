@@ -52,57 +52,97 @@ class GCA():
         """
         from IPython.display import display, Markdown
 
-        proof_text = r"""Dado el caso de un problema de dos cuerpos gravitacional, si uno de estos orbita al otro siguiendo una trayectoria aproximadamente circular $(e << 1)$, se puede estudiar su movimiento descomponiendolo en una parte circular y otra eliptica descritas por dos puntos especiales.
-        Un punto G en movimiento circular uniforme a una distancia (a) del centro, que corresponde con el semiejer mayor del cuerpo en su orbita, y una frecuencia angular media n resultado de la tercera ley de Kepler:
+        proof_text_1 = r"""Dado el caso de un problema de dos cuerpos gravitacional, si uno de estos orbita al otro siguiendo una trayectoria aproximadamente circular $(e << 1)$, se puede estudiar su movimiento descomponiendolo en una parte circular y otra eliptica descritas por dos puntos especiales."""
+        
+        proof_text_2 = r"""Un punto G en movimiento circular uniforme a una distancia (a) del centro, que corresponde con el semiejer mayor del cuerpo en su orbita, y una frecuencia angular media n resultado de la tercera ley de Kepler:
         $$
         n = \sqrt{\frac{\mu}{a^3}}
         $$
-        Ademas, se tiene un punto P orbitandolo con una trayectoria eliptica caracterizada por un semieje mayor y menor de longitud $2ae$ y $ae$ respectivamente, con (e) la excentricidad de la elipse. Este tambien orbita al punto G a la misma frecuencia angular media del mismo. 
+        """
+        
+        
+        proof_text_3 = r"""Ademas, se tiene un punto P orbitandolo con una trayectoria eliptica caracterizada por un semieje mayor y menor de longitud $2ae$ y $ae$ respectivamente, con (e) la excentricidad de la elipse. Este tambien orbita al punto G a la misma frecuencia angular media del mismo. 
         El movimiento del cuerpo P, descrito desde un sistema de referencia centrado en G y a partir del diagrama en la figura 2.8 de MD, puede ser descrito en terminos de la anomalia verdadera y la anomlia media como:
         $$
         x = r\cos{(f-M)} - a \\
         y = r\sin{(f-M)}
         $$
-        Teniendo en cuenta la expasion del argumento de la funciones sinusoidales de cada coordenada, mostrado en la ecuacion 2.88 de MD, y el hecho de que por definicion de (e) cualquiera de sus potencias mayores a 1 tiende a cero, las expresiones para x e y se convierten a:
+
+        
+        """
+
+
+        proof_text_4 = r"""Teniendo en cuenta la expasion del argumento de la funciones sinusoidales de cada coordenada, mostrado en la ecuacion 2.88 de MD, y el hecho de que por definicion de (e) cualquiera de sus potencias mayores a 1 tiende a cero, las expresiones para x e y se convierten a:
         $$
         f - M \approx 2e\sin{M} \\
         x \approx r\cos{(2e\sin{M})} - a \\
         y \approx r\sin{(2e\sin{M})}
         $$
-        Estas expresiones pueden ser simplificadas realizando una nueva expansion en series de cosenos y senos para los terminos sinusoidales:
+
+        """
+
+        proof_text_5 = r"""Estas expresiones pueden ser simplificadas realizando una nueva expansion en series de cosenos y senos para los terminos sinusoidales:
         $$
         \cos{(2e\sin{M})} = 1 - 2e^{2}\sin{M}^2
         \sin{(2e\sin{M})} = 2e\sin{M}
         $$
-        Ademas, de la ecuacion 2.20 se tiene que: $r = \frac{a(1-e^2)}{1 + e\cos{f}}$ el cual al expandir su denominador en torno a (e). Nuevamnete, siendo este un valor pequeño, se obtiene la expresion $(1-e\cos{f})$ en el denominador, mientras que en el numerador la potencia cuadratica desaparece por la misma razon, finalizando con la expresion:
+
+        """
+        
+        
+        proof_text_6 = r"""Ademas, de la ecuacion 2.20 se tiene que: $r = \frac{a(1-e^2)}{1 + e\cos{f}}$ el cual al expandir su denominador en torno a (e). Nuevamnete, siendo este un valor pequeño, se obtiene la expresion $(1-e\cos{f})$ en el denominador, mientras que en el numerador la potencia cuadratica desaparece por la misma razon, finalizando con la expresion:
         $$
         r = \frac{a(1-e^2)}{1 + e\cos{f}} \approx a(1-e^2)\cdot(1-e\cos{f}) \approx a(1-e\cos{f})
         $$
-        Y usando nuevamente el resultado de la ecuacion 2.88: $ f - M \approx 2e\sin{M}$ , se obtiene entonces que:
+        """
+
+        proof_text_7 = r"""Y usando nuevamente el resultado de la ecuacion 2.88: $ f - M \approx 2e\sin{M}$ , se obtiene entonces que:
         $$
         \cos{f} \approx \cos{M + 2e\sin{M}}
-        $$
-        Donde, dada la magnitud de e, el lado derecho adquiere la forma $\cos{M + \delta} \approx \cos{M} - \delta\sin{M}$, por lo cual:
+        $$       
+        """
+
+
+        proof_text_8 = r"""Donde, dada la magnitud de e, el lado derecho adquiere la forma $\cos{M + \delta} \approx \cos{M} - \delta\sin{M}$, por lo cual:
         $$
         \cos{f} \approx \cos{M} - \delta\sin{M} = \cos{M} - 2e\sin{M}\sin{M} = \cos{M} - 2e\sin{M}^2
         $$
-        Teniendo el ultimo termino muy pequeño por el cuadrado del seno a la par de la multiplicacion por la excentricidad, la expresion final indica que, arpoximadamente, los cosenos de ambas anomalias es el mismo.
+        """
+
+        proof_text_9 = r"""Teniendo el ultimo termino muy pequeño por el cuadrado del seno a la par de la multiplicacion por la excentricidad, la expresion final indica que, arpoximadamente, los cosenos de ambas anomalias es el mismo.
         $$
         \cos{f} \approx \cos{M}
         $$
-        Asi, reemplazando en las expresiones aproximadas de x e y, se obtiene:
+        """
+        
+        
+        proof_text_10 = r"""Asi, reemplazando en las expresiones aproximadas de x e y, se obtiene:  
         $$
         x \approx a(1- e\cos{M})(1-2e^{2}\sin{M}^2) - a \approx - ae\cos{M} \\
         y \approx a(1- e\cos{M})2e\sin{M} \approx 2ae\sin{M}
         $$
-        Finalmente, reemplazando en la ecuacion estandar de la elipse, se tiene que:
+
+        """
+
+        proof_text_11 = r"""Finalmente, reemplazando en la ecuacion estandar de la elipse, se tiene que:
         $$
         (\frac{- ae\cos{M}}{ae})^2  + (\frac{2ae\sin{M}}{2ae})^2 = \cos{M}^2 + \sin{M}^2 = 1    
         $$
         Cumpliendo con la identidad trigonometrica, se demuestra que el movimiento de un cuerpo en una orbita eliptica puede ser descompuesto en dos movimientos circulares, uno en el centro de la orbita y otro en la orbita misma.
         """
 
-        display(Markdown(proof_text))
+        display(Markdown(proof_text_1))
+        display(Markdown(proof_text_2))
+        display(Markdown(proof_text_3))
+        display(Markdown(proof_text_4))
+        display(Markdown(proof_text_5))
+        display(Markdown(proof_text_6))
+        display(Markdown(proof_text_7))
+        display(Markdown(proof_text_8))
+        display(Markdown(proof_text_9))
+        display(Markdown(proof_text_10))
+        display(Markdown(proof_text_11))
+
     
     def __params__(self):
         return self.orb_params.__dict__
