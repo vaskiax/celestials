@@ -100,7 +100,7 @@ class GCA():
         
         proof_text_10 = r"""Asi, reemplazando en las expresiones aproximadas de x e y, se obtiene:$x \approx a(1- e\cos{M})(1-2e^{2}\sin{M}^2) - a \approx - ae\cos{M}$ e $y \approx a(1- e\cos{M})2e\sin{M} \approx 2ae\sin{M}$"""
 
-        proof_text_11 = r"""Finalmente, reemplazando en la ecuacion estandar de la elipse, se tiene que: $(\frac{- ae\cos{M}}{ae})^2  + (\frac{2ae\sin{M}}{2ae})^2 = \cos{M}^2 + \sin{M}^2 = 1$, cumpliendo con la identidad trigonometrica, se demuestra que el movimiento de un cuerpo en una orbita eliptica puede ser descompuesto en dos movimientos circulares, uno en el centro de la orbita y otro en la orbita misma."""
+        proof_text_11 = r"""Finalmente, reemplazando en la ecuacion estandar de la elipse, se tiene que: $(\frac{- ae\cos{M}}{ae})^2  + (\frac{2ae\sin{M}}{2ae})^2 = \cos{M}^2 + \sin{M}^2 = 1$, cumpliendo con la identidad trigonometrica"""
 
         display(Markdown(proof_text_1))
         display(Markdown(proof_text_2))
