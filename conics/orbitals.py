@@ -11,6 +11,11 @@ class Orbitals():
         self.eccentric_anomaly = 0
         self.mean_anomaly = 0
         self.time_period = 0
+        self.time_periapsis = 0
+        self.inclination = 0
+        self.right_ascension = 0
+        self.argument_periapsis = 0
+
 
     def load (self, path):
         """
@@ -36,6 +41,11 @@ class Orbitals():
             self.eccentric_anomaly = data['E']
             self.mean_anomaly = data['M']
             self.time_period = data['T']
+            self.time_periapsis = data['t0']
+            self.inclination = data['i']
+            self.right_ascension = data['Ω']
+            self.argument_periapsis = data['ω']
+            
 
 
 

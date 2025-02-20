@@ -73,6 +73,11 @@ class GCA():
             self.AU = 1.496e11 # m
             self.rad2deg = 180/pi
             self.day2sec = 60*60*24 # s
+            self.time_periapsis = orb_params.time_periapsis
+            self.inclination = orb_params.inclination
+            self.right_ascension = orb_params.right_ascension
+            self.argument_periapsis = orb_params.argument_periapsis
+            
 
     def proof(self):
         """
