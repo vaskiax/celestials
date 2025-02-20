@@ -1,0 +1,28 @@
+## **Pregunta de Discusión: Eficacia de un Nuevo Tratamiento Médico**  
+
+### **Contexto del problema:**  
+- En un ensayo clínico, **200** pacientes fueron tratados con un nuevo fármaco para reducir la presión arterial.  
+- **91** pacientes lograron una reducción significativa de la presión arterial.  
+- Se esperaba que el tratamiento tuviera una eficacia del **50%**. Surge la pregunta: ¿Este resultado se debe al azar, o el fármaco es realmente menos efectivo de lo esperado?  
+
+### **Hipótesis:**  
+- **Hipótesis nula (H₀):** El **50%** de los pacientes obtiene una mejora significativa.  
+- **Hipótesis alternativa (Hₐ):** Menos del **50%** de los pacientes obtiene una mejora significativa.  
+
+### **Estadístico de prueba:**  
+- Número de pacientes, de un total de **200**, que muestran una mejora significativa tras el tratamiento.  
+
+### **Valor p:**  
+- ¿Cuál es el valor p obtenido?  
+
+
+
+- ¿Qué sucede si cambiamos el número de simulaciones?
+
+- ¿Qué sucede si cambiamos el tamano de la muestra, por ejemplo
+      el doble, 91*2, 200*2?, ¿Qué sucede con el p-value?
+
+- ¿qué sucede cuando varían las características de nuestra población?  
+    por ejemplo si la verdadera poblacion tiene un proporción de  0.45
+
+  

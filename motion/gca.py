@@ -31,7 +31,9 @@ class GCA():
     Methods:
     """
     from conics.orbitals import Orbitals
+    from numpy import ndarray
     def __init__(self, orb_params=None):
+        from numpy import linspace, pi
         if orb_params is None:
             self.orb_params = self.Orbitals()
             self.a = 0
@@ -44,7 +46,13 @@ class GCA():
             self.f = 0
             self.E = 0
             self.M = 0
-            self.T = 0
+            self.time = linspace(0, 2*pi, 1000)
+            self.M_sun = 1.989e30  # kg
+            self.G = 6.67430e-11 # m^3/kg/s^2
+            self.mu = self.G * self.M_sun # m^3/s^2
+            self.AU = 1.496e11 # m
+            self.rad2deg = 180/pi
+            self.day2sec = 60*60*24 # s
 
         else:
             self.orb_params = orb_params
@@ -58,7 +66,13 @@ class GCA():
             self.f = orb_params.true_anomaly
             self.E = orb_params.eccentric_anomaly
             self.M = orb_params.mean_anomaly
-            self.T = orb_params.time_period
+            self.time = linspace(0, 2*pi, 1000)
+            self.M_sun = 1.989e30  # kg
+            self.G = 6.67430e-11 # m^3/kg/s^2
+            self.mu = self.G * self.M_sun # m^3/s^2
+            self.AU = 1.496e11 # m
+            self.rad2deg = 180/pi
+            self.day2sec = 60*60*24 # s
 
     def proof(self):
         """
@@ -100,6 +114,49 @@ class GCA():
         display(Markdown(proof_text_10))
         display(Markdown(proof_text_11))
 
+    def decompose(self) -> tuple:
+        """
+        Decompose the motion of the system into two circular motions
+
+        Parameters:
+        time: np.ndarray
+                The time array to decompose the motion
+
+        Returns:
+        x: np.ndarray
+                The x component of the motion
+        y: np.ndarray
+                The y component of the motion
+        """
+        from numpy import sin, cos, array
+
+        r_G = lambda a,n,t: array([a*cos(n*t), a*sin(n*t), 0])
+        v_G = lambda a,n,t: array([-a*n*sin(n*t), a*n*cos(n*t), 0])
+
+        r_P = lambda a,e, n, t: array([2*a*e*cos(n*t), a*e*sin(n*t), 0])
+        v_P = lambda a,e, n, t: array([-a*n*e*sin(n*t), a*n*e*cos(n*t), 0])
+        
+        r_Gs = array([r_G(self.a,self.n,t) for t in self.time])
+        v_Gs = array([v_G(self.a,self.n,t) for t in self.time])
+
+        r_Ps = array([r_P(self.a,self.e, self.n,t) for t in self.time])
+        v_Ps = array([v_P(self.a, self.e, self.n,t) for t in self.time])
+
+        return r_Gs, v_Gs, r_Ps, v_Ps        
+
+    def __str__(self):
+        return f"Orbitals: {self.orb_params}"
     
     def __params__(self):
-        return self.orb_params.__dict__
+        return dict(semimajor=self.a,
+                    semiminor=self.b,
+                    eccentricity=self.e,
+                    focus=self.c,
+                    latus_rectum=self.p,
+                    directrix=self.q,
+                    mean_angular_velocity=self.n,
+                    true_anomaly=self.f,
+                    eccentric_anomaly=self.E,
+                    mean_anomaly=self.M
+                    )
+    

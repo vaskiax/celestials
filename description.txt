@@ -1,0 +1,17 @@
+**Objetivo**: Existe un método alternativo, y muy ingenioso, para el cálculo de la posición de un planeta sobre su órbita como función del tiempo que sirve cuando la excentricidad es muy pequeña. Se conoce como la aproximación del centro guía y en esta tarea desarrollaremos en detalle la teoría y los experimentos numéricos para conocerla a fondo y ponerla a prueba. Para ello nos basaremos en el desarrollo que aparece en la [sección 2.6 del texto clásico de astrodinámica *Solar System Dynamics* de C.D. Murray y S.F. Dermot](https://drive.google.com/file/d/17mmwztHQ3yyswTYYe4vlcyVt8HWu0f62/view?usp=sharing) (en lo sucesivo lo abreviaremos como MD2.6)
+
+**Procedimiento**:
+
+1. Demuestre que el movimiento de un planeta sobre una órbita elíptica con semieje mayor $a$ y excentricidad $e$ (con $e\ll 1$) es equivalente al que se produce al combinar el movimiento de un punto P sobre un círculo de radio $a$ centrado en el foco, y el del planeta sobre una elipse con semiejes mayor $2ae$ y menor $ae$ con centro en el punto P (ver Figura 2.8 en MD2.6), ambos movimientos con la misma frecuencia angular $n$ de la órbita original. A esta equivalencia se la llama *la aproximación del centro guía* (en lo sucesivo la abreviaremos como ACG)
+
+   **Ayuda**: Demuestre la ecuación (2.99) mostrando con todo detalle el procedimiento en MD2.6.
+
+   <center><img src="https://drive.google.com/uc?id=1lQjJ4NGkEWszPkmoDhyuGvxETFGqaQ3w" align="center" width="550"></center>
+
+2. Escriba una rutina para calcular la posición del planeta usando la ACG (escoga un valor arbitrario de $a$ y $e$ para este propósito). Haga una animación del movimiento del planeta con la ACG y compare la predicción de la posición con aquella que se obtiene resolviendo el problema de los dos cuerpos con la ecuación de Kepler. Estudie la calidad de la ACG al aumentar el valor de la excentricidad.
+
+3. Si definimos $g$ como el ángulo que forma la línea dirigida del foco vacío al punto en el que está la partícula (ver Figura 2.9 de MD3.6), demuestre que $g\approx M$ cuando $e\ll 1$.
+
+   **Ayuda**: Demuestre la ecuación (2.105) mostrando con todo detalle el procedimiento en MD2.6.
+
+4. Para una órbita elíptica particular de semieje mayor $a$ y excentricidad $e$, gráfique el valor de $g$ como función del tiempo y compárelo con el valor de $M$ como función del tiempo. Repita el cálculo para distintos valores de la excentricidad. ¿Qué observa?.
