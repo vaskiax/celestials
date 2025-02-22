@@ -17,11 +17,20 @@ class Orbitals():
         self.argument_periapsis = 0
 
 
-    def load (self, path):
+    def load (self, path:str)->None:
         """
         Reads the parameters of the orbit from a txt file, and updates
         the attributes of the class
-        
+
+        Parameters
+        ----------
+        path : str
+            The path to the txt file containing the parameters of the orbit
+
+        Returns
+        -------
+        None
+    
         """
         import pandas as pd
         with open(path, 'r') as file:

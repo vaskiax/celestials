@@ -32,20 +32,21 @@ class GCA():
     """
     from conics.orbitals import Orbitals
     from numpy import ndarray
-    def __init__(self, orb_params=None):
+
+    def __init__(self, orb_params=None)->None:
         from numpy import linspace, pi
         if orb_params is None:
             self.orb_params = self.Orbitals()
-            self.a = 0
-            self.b = 0
-            self.e = 0
-            self.c = 0
-            self.p = 0
-            self.q = 0
-            self.n = 0
-            self.f = 0
-            self.E = 0
-            self.M = 0
+            self.a = None
+            self.b = None
+            self.e = None
+            self.c = None
+            self.p = None
+            self.q = None
+            self.n = None
+            self.f = None
+            self.E = None
+            self.M = None
             self.time = linspace(0, 2*pi, 1000)
             self.M_sun = 1.989e30  # kg
             self.G = 6.67430e-11 # m^3/kg/s^2
@@ -53,6 +54,17 @@ class GCA():
             self.AU = 1.496e11 # m
             self.rad2deg = 180/pi
             self.day2sec = 60*60*24 # s
+            self.t0 = None
+            self.inclination = None
+            self.right_ascension = None
+            self.argument_periapsis = None
+            self.r_Gs = None
+            self.v_Gs = None
+            self.r_Ps = None
+            self.v_Ps = None
+            self.r = None
+            self.v = None
+
 
         else:
             self.orb_params = orb_params
@@ -73,13 +85,18 @@ class GCA():
             self.AU = 1.496e11 # m
             self.rad2deg = 180/pi
             self.day2sec = 60*60*24 # s
-            self.time_periapsis = orb_params.time_periapsis
+            self.t0 = orb_params.time_periapsis
             self.inclination = orb_params.inclination
             self.right_ascension = orb_params.right_ascension
             self.argument_periapsis = orb_params.argument_periapsis
+            self.r_Gs = None
+            self.v_Gs = None
+            self.r_Ps = None
+            self.v_Ps = None
+            self.r = None
+            self.v= None
             
-
-    def proof(self):
+    def proof(self)->None:
         """
         Proof of the GCA
         """
@@ -147,7 +164,44 @@ class GCA():
         r_Ps = array([r_P(self.a,self.e, self.n,t) for t in self.time])
         v_Ps = array([v_P(self.a, self.e, self.n,t) for t in self.time])
 
-        return r_Gs, v_Gs, r_Ps, v_Ps        
+        self.r_Gs = r_Gs
+        self.v_Gs = v_Gs
+        self.r_Ps = r_Ps
+        self.v_Ps = v_Ps
+        self.r = r_Gs + r_Ps
+        self.v = v_Gs + v_Ps
+
+        return r_Gs, v_Gs, r_Ps, v_Ps    
+
+    def animate(self, save=False)->None:
+        """
+        Animate the motion of the system
+        """
+        from matplotlib import pyplot as plt
+        from matplotlib.animation import FuncAnimation
+        from IPython.display import HTML
+
+        fig = plt.figure(figsize=(7,7))
+        ax = fig.add_subplot(111, projection='3d')
+
+        def update(t):
+            ax.clear()
+            ax.scatter3D(self.r_Gs[:, 0], self.r_Gs[:, 1],
+                        self.r_Gs[:, 2], c='black', marker='o', s=.05)
+            
+            ax.scatter3D(self.r[t, 0], self.r[t, 1],
+                        self.r[t, 2], c='red', marker='o', s=75)
+
+            ax.set_axis_off()
+            ax.view_init(elev=90, azim=90)
+
+
+        ani = FuncAnimation(fig, update, frames=len(self.time), interval=550)
+        plt.close()
+
+        ani.save('gca.gif', fps=60)
+
+        #return HTML(ani.to_jshtml())
 
     def __str__(self):
         return f"Orbitals: {self.orb_params}"
