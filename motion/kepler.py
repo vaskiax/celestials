@@ -60,14 +60,12 @@ class Kepler:
             # Initialize with E0 = M (good approximation for small e)
             E = copy(M)
             for i in range(self.max_iter):
-                f = E - self.e * sin(E) - self.M
+                f = E - self.e * sin(E) - M  # ✅ Now correctly uses input M
                 fp = 1 - self.e * cos(E)
-                delta = - f / fp
+                delta = -f / fp
                 E += delta
                 if all(abs(delta) < self.tol):
                     break
-
-            self.E = E
             return E
         
     def kepler(self) -> tuple:
@@ -84,10 +82,8 @@ class Kepler:
             """
             from numpy import arctan2, sqrt, sin, cos, zeros_like, array
 
-            M = self.n * (self.time - self.t0)
+            M = self.n * (self.time)
             E = self.anomaly_E(M)
-            print(E)
-            # Calculate the true anomaly f from E
             f = 2 * arctan2(sqrt(1 + self.e) * sin(E / 2), sqrt(1 - self.e) * cos(E / 2))
             r = self.a * (1 - self.e * cos(E))
             x = r * cos(f)
@@ -99,24 +95,43 @@ class Kepler:
 
             return r
     
-    def animate(self, type='GCA')->None:
+    def animate(self, save=False):
         """
-        Animate the motion of the system
+        Smooth animation of the system motion with optimized performance.
         """
         from matplotlib import pyplot as plt
         from matplotlib.animation import FuncAnimation
+        from IPython.display import HTML
+        from matplotlib import rcParams
 
-        fig = plt.figure(figsize=(7,7))
+        fig = plt.figure(figsize=(7, 7))
         ax = fig.add_subplot(111, projection='3d')
 
-        def update(i):
-            ax.clear()
-            ax.scatter3D(self.r[:, 0], self.r[:, 1], self.r[:, 2], color='blue')
-            ax.scatter3D(self.r[i, 0], self.r[i, 1], self.r[i, 2], color='blue')
-            return
-        
-        anim = FuncAnimation(fig, update, frames=len(self.time), interval=550)
-        anim.save('kepler.gif', fps=60)
+        ax.scatter3D(self.r[:, 0], self.r[:, 1], self.r[:, 2], 
+                    c='black', marker='o', s=0.05, alpha=0.5)
+
+        point, = ax.plot([], [], [], 'ro', markersize=10)
+        ax.set_axis_off()
+        ax.view_init(elev=90, azim=0)
+
+        def update(frame):
+            """Update function for animation"""
+            x, y, z = self.r[frame, 0], self.r[frame, 1], self.r[frame, 2]
+            point.set_data([x], [y])  # ✅ Ensure it's a sequence
+            point.set_3d_properties([z])  # ✅ Ensure it's a sequence
+            return point,
+
+        frames = len(self.time)
+        interval = 1000 / 30  # 🔥 30 FPS → 33ms per frame
+        rcParams['animation.embed_limit'] = 2**128
+        ani = FuncAnimation(fig, update, frames=frames, interval=interval, blit=True)
+
+        if save:
+            ani.save('media/kepler.gif', writer='imagemagick',fps=30)  # 🔥 Lower dpi for smaller size
+
+        plt.close()
+        return HTML(ani.to_jshtml())
+ 
        
     def load (self, path:str)->None:
          

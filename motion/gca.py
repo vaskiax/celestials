@@ -173,35 +173,43 @@ class GCA():
 
         return r_Gs, v_Gs, r_Ps, v_Ps    
 
-    def animate(self, save=False)->None:
+    def animate(self, save=False):
         """
-        Animate the motion of the system
+        Smooth animation of the system motion with optimized performance.
         """
         from matplotlib import pyplot as plt
         from matplotlib.animation import FuncAnimation
         from IPython.display import HTML
+        from matplotlib import rcParams
 
-        fig = plt.figure(figsize=(7,7))
+        fig = plt.figure(figsize=(7, 7))
         ax = fig.add_subplot(111, projection='3d')
 
-        def update(t):
-            ax.clear()
-            ax.scatter3D(self.r_Gs[:, 0], self.r_Gs[:, 1],
-                        self.r_Gs[:, 2], c='black', marker='o', s=.05)
-            
-            ax.scatter3D(self.r[t, 0], self.r[t, 1],
-                        self.r[t, 2], c='red', marker='o', s=75)
+        ax.scatter3D(self.r_Gs[:, 0], self.r_Gs[:, 1], self.r_Gs[:, 2], 
+                    c='black', marker='o', s=0.05, alpha=0.5)
 
-            ax.set_axis_off()
-            ax.view_init(elev=90, azim=90)
+        point, = ax.plot([], [], [], 'ro', markersize=10)
+        ax.set_axis_off()
+        ax.view_init(elev=90, azim=0)
 
+        def update(frame):
+            """Update function for animation"""
+            x, y, z = self.r[frame, 0], self.r[frame, 1], self.r[frame, 2]
+            point.set_data([x], [y])  # ✅ Ensure it's a sequence
+            point.set_3d_properties([z])  # ✅ Ensure it's a sequence
+            return point,
 
-        ani = FuncAnimation(fig, update, frames=len(self.time), interval=550)
+        frames = len(self.time)
+        interval = 1000 / 30  # 🔥 30 FPS → 33ms per frame
+        rcParams['animation.embed_limit'] = 2**128
+        ani = FuncAnimation(fig, update, frames=frames, interval=interval, blit=True)
+
+        if save:
+            ani.save('media/comparison.gif', writer='imagemagick',fps=30)  # 🔥 Lower dpi for smaller size
+
         plt.close()
+        return HTML(ani.to_jshtml())
 
-        ani.save('gca.gif', fps=60)
-
-        #return HTML(ani.to_jshtml())
 
     def __str__(self):
         return f"Orbitals: {self.orb_params}"
