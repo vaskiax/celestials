@@ -32,7 +32,6 @@ class Orbitals():
         None
     
         """
-        import pandas as pd
         with open(path, 'r') as file:
             lines = [line.strip() for line in file]
             data = dict()

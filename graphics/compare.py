@@ -15,11 +15,13 @@ def animations(r1, r2, r3, save=False):
                  c='black', marker='o', s=0.05, alpha=0.5)
 
     # Create TWO separate animated points
-    point1, = ax.plot([], [], [], 'ro', markersize=8)  # Red point
-    point2, = ax.plot([], [], [], 'bo', markersize=8)  # Blue point
-
+    point1, = ax.plot([], [], [], 'ro', markersize=8, label='Guided Center')  # Red point
+    point2, = ax.plot([], [], [], 'bo', markersize=8, label='Keplerian')  # Blue point
     ax.set_axis_off()
     ax.view_init(elev=90, azim=0)
+    plt.legend()
+    plt.title('Keplerian vs Guided Center approach comparison')
+    
 
     def update(frame):
         """Update function for animation"""
