@@ -6,6 +6,7 @@ def animations(r1, r2, r3, save=False):
     from matplotlib.animation import FuncAnimation
     from IPython.display import HTML
     from matplotlib import rcParams
+    from numpy import max, arange
 
     fig = plt.figure(figsize=(7, 7))
     ax = fig.add_subplot(111, projection='3d')
@@ -15,13 +16,11 @@ def animations(r1, r2, r3, save=False):
                  c='black', marker='o', s=0.05, alpha=0.5)
 
     # Create TWO separate animated points
-    point1, = ax.plot([], [], [], 'ro', markersize=8, label='Guided Center')  # Red point
-    point2, = ax.plot([], [], [], 'bo', markersize=8, label='Keplerian')  # Blue point
+    point1, = ax.plot([], [], [], 'ro', markersize=8)  # Red point
+    point2, = ax.plot([], [], [], 'bo', markersize=8)  # Blue point
+
     ax.set_axis_off()
     ax.view_init(elev=90, azim=0)
-    plt.legend()
-    plt.title('Keplerian vs Guided Center approach comparison')
-    
 
     def update(frame):
         """Update function for animation"""
@@ -38,10 +37,13 @@ def animations(r1, r2, r3, save=False):
 
         return point1, point2  # Must return both!
 
-    frames = len(r1)
+    frames = 500
+    N = len(r1)
+    frame_step = max(1, N // frames)
+    frames = arange(0, N, frame_step)
     interval = 1000 / 30  # 🔥 30 FPS → 33ms per frame
     rcParams['animation.embed_limit'] = 2**128
-    ani = FuncAnimation(fig, update, frames=frames, interval=interval, blit=True)
+    ani = FuncAnimation(fig, update, frames=frames, interval=interval, cache_frame_data=False)
 
     if save:
         ani.save('media/comparison.gif', writer='imagemagick', fps=30)
