@@ -127,7 +127,7 @@ class Kepler:
         ani = FuncAnimation(fig, update, frames=frames, interval=interval, blit=True)
 
         if save:
-            ani.save('media/kepler.gif', writer='imagemagick',fps=30)  # 🔥 Lower dpi for smaller size
+            ani.save('media/kepler.gif', writer='ffmpeg',fps=30)  # 🔥 Lower dpi for smaller size
 
         plt.close()
         return HTML(ani.to_jshtml())
