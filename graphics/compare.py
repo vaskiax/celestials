@@ -4,7 +4,7 @@ from matplotlib.animation import FuncAnimation
 from IPython.display import HTML
 from matplotlib import rcParams
 
-def animations(r1, r2, r3, save=False, fps=1.10):
+def animations(r1:np.ndarray, r2:np.ndarray, r3:np.ndarray, save=False, fps=1.10):
     """
     Smooth animation of the system motion with optimized performance.
     Fixes issues where rerunning the code accumulates choppiness.
@@ -42,7 +42,7 @@ def animations(r1, r2, r3, save=False, fps=1.10):
 
     # 🔹 Prevent frame accumulation by setting a fixed frame count
     frames = min(len(r1), len(r2), len(r3), 720)
-    interval = 100/fps  # 30 FPS
+    interval = 1000/fps  # 30 FPS
     rcParams['animation.embed_limit'] = 2**128
 
     ani = FuncAnimation(fig, update, frames=frames, interval=interval, cache_frame_data=False)
